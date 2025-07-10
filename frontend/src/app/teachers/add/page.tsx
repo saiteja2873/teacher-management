@@ -7,6 +7,7 @@ import { Input } from "../../../components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export default function AddTeacherPage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function AddTeacherPage() {
     qualification: "",
     subjects: "",
     availability: "",
-    address: "", // ✅ Added address
+    address: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -43,18 +44,42 @@ export default function AddTeacherPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-6">Add New Teacher</h2>
+    <motion.div
+      className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow mt-10"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <motion.h2
+        className="text-2xl font-bold mb-6 text-blue-700"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+      >
+        Add New Teacher
+      </motion.h2>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <motion.form
+        onSubmit={handleSubmit}
+        className="space-y-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
         {[
           { name: "name", label: "Full Name", type: "text" },
           { name: "email", label: "Email", type: "email" },
           { name: "phone", label: "Phone Number", type: "tel" },
           { name: "qualification", label: "Qualification", type: "text" },
           { name: "subjects", label: "Subjects", type: "text" },
-        ].map(({ name, label, type }) => (
-          <div key={name} className="space-y-2">
+        ].map(({ name, label, type }, i) => (
+          <motion.div
+            key={name}
+            className="space-y-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.1 }}
+          >
             <Label htmlFor={name}>{label}</Label>
             <Input
               id={name}
@@ -64,11 +89,15 @@ export default function AddTeacherPage() {
               onChange={handleChange}
               required
             />
-          </div>
+          </motion.div>
         ))}
 
-        {/* ✅ Address Field */}
-        <div className="space-y-2">
+        <motion.div
+          className="space-y-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+        >
           <Label htmlFor="address">Address</Label>
           <Textarea
             id="address"
@@ -78,9 +107,14 @@ export default function AddTeacherPage() {
             rows={3}
             required
           />
-        </div>
+        </motion.div>
 
-        <div className="space-y-2">
+        <motion.div
+          className="space-y-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+        >
           <Label htmlFor="availability">Availability</Label>
           <Textarea
             id="availability"
@@ -90,12 +124,17 @@ export default function AddTeacherPage() {
             rows={3}
             required
           />
-        </div>
+        </motion.div>
 
-        <Button type="submit" disabled={loading} className="w-full">
+        <motion.button
+          type="submit"
+          disabled={loading}
+          whileTap={{ scale: 0.95 }}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition"
+        >
           {loading ? "Submitting..." : "Add Teacher"}
-        </Button>
-      </form>
-    </div>
+        </motion.button>
+      </motion.form>
+    </motion.div>
   );
 }

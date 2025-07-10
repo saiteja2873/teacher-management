@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
-import { FiSend, FiCamera } from "react-icons/fi";
+import { FiSend, FiCamera, FiArrowLeft } from "react-icons/fi";
 import dynamic from "next/dynamic";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,7 +17,19 @@ const Scanner = dynamic(
   }
 );
 
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1 },
+  }),
+};
+
 export default function UpiPage() {
+  const router = useRouter();
+
   const [upiId, setUpiId] = useState("");
   const [amount, setAmount] = useState("");
   const [remark, setRemark] = useState("");
@@ -41,7 +54,6 @@ export default function UpiPage() {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (isMobile) {
-      // Open in UPI app on mobile
       window.location.href = upiLink;
     } else {
       toast.error("UPI payment links can only be opened on mobile devices.");
@@ -50,23 +62,48 @@ export default function UpiPage() {
 
   return (
     <motion.div
-      className="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-6 space-y-6 mt-10 transition-all"
+      className="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-6 space-y-6 mt-10"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <ToastContainer />
-      <h2 className="text-xl font-semibold text-gray-800">
+
+      {/* 🔙 Back Button */}
+      <motion.button
+        onClick={() => router.back()}
+        className="flex items-center gap-2 text-blue-600 font-medium cursor-pointer"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+      >
+        <FiArrowLeft />
+        Back
+      </motion.button>
+
+      <motion.h2
+        className="text-xl font-semibold text-gray-800"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
         Send Money via UPI
-      </h2>
-      {/* QR Scanner toggle */}
-      <button
+      </motion.h2>
+
+      <motion.button
         onClick={() => setShowScanner((prev) => !prev)}
         className="inline-flex items-center gap-2 text-blue-600 hover:underline focus:outline-none"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial="hidden"
+        animate="visible"
       >
         <FiCamera />
         {showScanner ? "Close Scanner" : "Scan QR Code"}
-      </button>
-      {/* QR Scanner */}
+      </motion.button>
+
       <AnimatePresence>
         {showScanner && (
           <motion.div
@@ -75,7 +112,6 @@ export default function UpiPage() {
             exit={{ opacity: 0, scale: 0.95 }}
             className="border rounded-xl overflow-hidden"
           >
-            {/* Mobile-only QR Scanner */}
             <div className="block sm:hidden w-full">
               <Scanner
                 onScan={(codes) => {
@@ -95,19 +131,15 @@ export default function UpiPage() {
                 scanDelay={500}
               />
             </div>
-
-            {/* Optional message for larger devices */}
             <div className="hidden sm:flex items-center justify-center p-4 text-sm text-red-500">
               QR scanning is only available on mobile devices.
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* UPI ID */}
-      <div>
-        <label className="text-sm font-medium text-gray-600">
-          Recipient UPI ID
-        </label>
+
+      <motion.div variants={fadeInUp} custom={1} initial="hidden" animate="visible">
+        <label className="text-sm font-medium text-gray-600">Recipient UPI ID</label>
         <input
           type="text"
           value={upiId}
@@ -115,9 +147,9 @@ export default function UpiPage() {
           placeholder="example@upi"
           className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
-      </div>
-      {/* Amount */}
-      <div>
+      </motion.div>
+
+      <motion.div variants={fadeInUp} custom={2} initial="hidden" animate="visible">
         <label className="text-sm font-medium text-gray-600">Amount</label>
         <input
           type="number"
@@ -129,12 +161,10 @@ export default function UpiPage() {
           placeholder="₹0.00"
           className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
-      </div>
-      {/* Remark */}
-      <div>
-        <label className="text-sm font-medium text-gray-600">
-          Remark (optional)
-        </label>
+      </motion.div>
+
+      <motion.div variants={fadeInUp} custom={3} initial="hidden" animate="visible">
+        <label className="text-sm font-medium text-gray-600">Remark (optional)</label>
         <input
           type="text"
           value={remark}
@@ -142,13 +172,17 @@ export default function UpiPage() {
           placeholder="Enter message"
           className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
-      </div>
-      {/* Submit */}
+      </motion.div>
+
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={handlePayment}
         disabled={loading}
         className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-xl transition-all"
+        variants={fadeInUp}
+        custom={4}
+        initial="hidden"
+        animate="visible"
       >
         {loading ? (
           <span className="animate-pulse">Processing...</span>

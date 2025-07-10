@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { FiEdit2, FiPlus, FiCheck, FiX } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import {motion} from "framer-motion"
+
 
 const mockTeachers = [
   {
@@ -26,6 +30,8 @@ const mockTeachers = [
 export default function TeacherDetailPage() {
   const { id } = useParams();
   const teacher = mockTeachers.find((t) => t.id === id);
+
+  const router = useRouter();
 
   const [isEditingDetails, setIsEditingDetails] = useState(false);
   const [isEditingPhone, setIsEditingPhone] = useState(false);
@@ -133,6 +139,14 @@ export default function TeacherDetailPage() {
   return (
     <div className="p-6 space-y-6">
       <div className="text-2xl font-bold text-gray-800">
+        <motion.button
+          onClick={() => router.back()}
+          className="flex items-center text-blue-600 mb-2 cursor-pointer"
+          whileHover={{ scale: 1.05 }}
+        >
+          <FiArrowLeft className="mr-1" />
+          Back
+        </motion.button>
         Teachers / {teacher.name}
       </div>
 
