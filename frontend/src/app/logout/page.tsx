@@ -2,29 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LogoutPage() {
   const router = useRouter();
-  const [confirmed, setConfirmed] = useState(false);
-
-//   const handleConfirmLogout = () => {
-//     // Clear tokens or session here
-//     localStorage.clear(); // or cookies, auth tokens etc.
-//     toast.success("Logged out successfully!");
-
-//     setTimeout(() => {
-//       router.push("/login"); // Redirect to login or landing page
-//     }, 1500);
-//   };
-
-//   useEffect(() => {
-//     if (confirmed) {
-//       handleConfirmLogout();
-//     }
-//   }, [confirmed]);
 
   return (
     <motion.div
@@ -43,7 +26,6 @@ export default function LogoutPage() {
 
         <div className="flex justify-center gap-4">
           <motion.button
-            onClick={() => setConfirmed(true)}
             className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-all"
             whileTap={{ scale: 0.95 }}
           >
