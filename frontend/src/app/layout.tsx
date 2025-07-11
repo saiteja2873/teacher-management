@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import SidebarLayout from '@/components/layout/sideBarLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en" className="">
         <body className={`${inter.className} min-h-screen bg-background text-foreground transition-colors`}>
 
-        <SidebarLayout>{children}</SidebarLayout>
+        <SidebarLayout>{children}
+          <Analytics />
+        </SidebarLayout>
 
         <ToastContainer
           position="top-right"
