@@ -7,7 +7,6 @@ import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-
 const mockTeachers = [
   {
     id: "1",
@@ -122,7 +121,12 @@ export default function TeacherDetailPage() {
       ...list[idx],
       [field]: field === "rate" ? Number(value) : value,
     };
-    type === "private" ? setPrivateQuals(list) : setGroupQuals(list);
+
+    if (type === "private") {
+      setPrivateQuals(list);
+    } else {
+      setGroupQuals(list);
+    }
   };
 
   if (!teacher) return <div className="p-6">Teacher not found</div>;

@@ -11,15 +11,25 @@ import { motion } from "framer-motion";
 export default function AddTeacherPage() {
   const router = useRouter();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    qualification: "",
-    subjects: "",
-    availability: "",
-    address: "",
-  });
+type TeacherFormFields = {
+  name: string;
+  email: string;
+  phone: string;
+  qualification: string;
+  subjects: string;
+  availability: string;
+  address: string;
+};
+
+  const [formData, setFormData] = useState<TeacherFormFields>({
+  name: "",
+  email: "",
+  phone: "",
+  qualification: "",
+  subjects: "",
+  availability: "",
+  address: "",
+});
 
   const [loading, setLoading] = useState(false);
 
@@ -86,7 +96,7 @@ export default function AddTeacherPage() {
               id={name}
               type={type}
               name={name}
-              value={(formData as any)[name]}
+              value={(formData)[name as keyof TeacherFormFields]}
               onChange={handleChange}
               required
               className="bg-background text-foreground border border-gray-300 dark:border-gray-700"

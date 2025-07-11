@@ -46,7 +46,7 @@ export default function UpiPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        Choose what you'd like to do:
+        Choose what you&apos;d like to do:
       </motion.p>
 
       <div className="flex flex-col gap-4">

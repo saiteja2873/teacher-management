@@ -103,7 +103,7 @@ export default function DashboardPage() {
         custom={5}
       >
         <h2 className="text-base sm:text-lg font-semibold mb-4">
-          Today's Schedule
+          Today&apos;s Schedule
         </h2>
 
         <div className="w-full overflow-x-auto">

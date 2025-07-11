@@ -37,13 +37,17 @@ export default function UpiPage() {
   const [showScanner, setShowScanner] = useState(false);
 
   const handlePayment = () => {
+    setLoading(true);
+
     if (!upiId.match(/^[\w.-]+@[\w.-]+$/)) {
       toast.error("Enter a valid UPI ID");
+      setLoading(false);
       return;
     }
 
     if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
       toast.error("Enter a valid amount");
+      setLoading(false);
       return;
     }
 
@@ -54,9 +58,11 @@ export default function UpiPage() {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (isMobile) {
+      setLoading(false); // optional: you can keep it true until return
       window.location.href = upiLink;
     } else {
-      toast.error("UPI payment links can only be opened on mobile devices.");
+      toast.error("Your Bank Account is not Linked");
+      setLoading(false);
     }
   };
 
@@ -136,8 +142,15 @@ export default function UpiPage() {
         )}
       </AnimatePresence>
 
-      <motion.div variants={fadeInUp} custom={1} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Recipient UPI ID</label>
+      <motion.div
+        variants={fadeInUp}
+        custom={1}
+        initial="hidden"
+        animate="visible"
+      >
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+          Recipient UPI ID
+        </label>
         <input
           type="text"
           value={upiId}
@@ -147,8 +160,15 @@ export default function UpiPage() {
         />
       </motion.div>
 
-      <motion.div variants={fadeInUp} custom={2} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Amount</label>
+      <motion.div
+        variants={fadeInUp}
+        custom={2}
+        initial="hidden"
+        animate="visible"
+      >
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+          Amount
+        </label>
         <input
           type="number"
           value={amount}
@@ -161,8 +181,15 @@ export default function UpiPage() {
         />
       </motion.div>
 
-      <motion.div variants={fadeInUp} custom={3} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Remark (optional)</label>
+      <motion.div
+        variants={fadeInUp}
+        custom={3}
+        initial="hidden"
+        animate="visible"
+      >
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+          Remark (optional)
+        </label>
         <input
           type="text"
           value={remark}
