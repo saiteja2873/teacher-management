@@ -141,8 +141,8 @@ export default function TeacherDetailPage() {
   );
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="text-2xl font-bold text-gray-800 dark:text-gray-400">
+    <div className="p-6 space-y-6 not-sm:ml-[-5%]">
+      <div className="text-2xl font-bold text-gray-800 dark:text-gray-400 not-sm:ml-[-7%]">
         <motion.button
           onClick={() => router.back()}
           className="flex items-center text-blue-600 mb-2 cursor-pointer"

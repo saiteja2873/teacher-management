@@ -55,7 +55,7 @@ export default function PaymentsPage() {
 
   return (
     <motion.div
-      className="p-6 max-w-4xl mx-auto text-gray-800 dark:text-white"
+      className="py-6 px-1 max-w-4xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}

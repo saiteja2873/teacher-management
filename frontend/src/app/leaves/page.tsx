@@ -66,7 +66,7 @@ export default function LeaveRequestsPage() {
 
   return (
     <motion.div
-      className="p-6 max-w-4xl mx-auto text-gray-800 dark:text-white"
+      className="py-6 px-1 max-w-4xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

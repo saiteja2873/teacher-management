@@ -60,7 +60,7 @@ type TeacherFormFields = {
       transition={{ duration: 0.4 }}
     >
       <motion.h2
-        className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400"
+        className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400 not-sm:ml-[-4%]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
@@ -70,7 +70,7 @@ type TeacherFormFields = {
 
       <motion.form
         onSubmit={handleSubmit}
-        className="space-y-8"
+        className="space-y-8 "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -89,7 +89,7 @@ type TeacherFormFields = {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + i * 0.1 }}
           >
-            <Label htmlFor={name} className="text-foreground">
+            <Label htmlFor={name} className="text-foreground not-sm:ml-[-2%]">
               {label}
             </Label>
             <Input

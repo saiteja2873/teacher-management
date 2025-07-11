@@ -54,7 +54,7 @@ export default function AttendancePage() {
 
   return (
     <motion.div
-      className="p-6 max-w-3xl mx-auto text-gray-800 dark:text-white"
+      className="px-1 py-6 max-w-3xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -99,7 +99,7 @@ export default function AttendancePage() {
       <motion.button
         onClick={handleSubmit}
         whileTap={{ scale: 0.97 }}
-        className="mt-8 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition dark:bg-blue-500 dark:hover:bg-blue-600"
+        className="block mx-auto mt-8 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition dark:bg-blue-500 dark:hover:bg-blue-600"
       >
         Submit Attendance
       </motion.button>

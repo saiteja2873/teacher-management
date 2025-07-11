@@ -14,7 +14,7 @@ export default function TeachersListPage() {
   const router = useRouter()
 
   return (
-    <div className="p-6 space-y-6 text-foreground bg-background transition-colors">
+    <div className="p-6 space-y-6 text-foreground bg-background transition-colors not-sm:ml-[-8%]">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Teachers</h1>
         <Button className="cursor-pointer" onClick={() => router.push('/teachers/add')}>
