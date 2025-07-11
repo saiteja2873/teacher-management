@@ -15,7 +15,7 @@ interface LeaveRequest {
 const initialRequests: LeaveRequest[] = [
   {
     id: 1,
-    teacherName: "Alynia Allan",
+    teacherName: "Tina Prakash",
     date: "2025-07-09",
     days: 2,
     reason: "Medical leave",
@@ -23,7 +23,7 @@ const initialRequests: LeaveRequest[] = [
   },
   {
     id: 2,
-    teacherName: "James Carter",
+    teacherName: "John Martin",
     date: "2025-07-08",
     days: 1,
     reason: "Personal work",
@@ -31,7 +31,7 @@ const initialRequests: LeaveRequest[] = [
   },
   {
     id: 3,
-    teacherName: "Priya Kapoor",
+    teacherName: "Priya Singh",
     date: "2025-07-10",
     days: 3,
     reason: "Family event",
@@ -66,13 +66,13 @@ export default function LeaveRequestsPage() {
 
   return (
     <motion.div
-      className="p-6 max-w-4xl mx-auto"
+      className="p-6 max-w-4xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
       <motion.h1
-        className="text-2xl font-bold mb-6 text-blue-800"
+        className="text-2xl font-bold mb-6 text-blue-800 dark:text-blue-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -91,15 +91,19 @@ export default function LeaveRequestsPage() {
             <motion.div
               key={req.id}
               variants={cardVariants}
-              className="border rounded-lg p-4 bg-white shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+              className="border rounded-lg p-4 bg-white dark:bg-gray-800 dark:border-gray-700 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3"
               layout
             >
               <div>
-                <p className="font-semibold text-gray-800">{req.teacherName}</p>
-                <p className="text-sm text-gray-600">
+                <p className="font-semibold text-gray-800 dark:text-white">
+                  {req.teacherName}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   📅 Date: {req.date} &nbsp;|&nbsp; 🕒 Days: {req.days}
                 </p>
-                <p className="text-sm text-gray-600">📝 Reason: {req.reason}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  📝 Reason: {req.reason}
+                </p>
               </div>
 
               <div className="flex items-center gap-3">
@@ -107,10 +111,10 @@ export default function LeaveRequestsPage() {
                   key={req.status}
                   className={`px-3 py-1 rounded-full text-sm font-medium ${
                     req.status === "Approved"
-                      ? "bg-green-100 text-green-700"
+                      ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
                       : req.status === "Rejected"
-                      ? "bg-red-100 text-red-700"
-                      : "bg-yellow-100 text-yellow-700"
+                      ? "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200"
+                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200"
                   }`}
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}

@@ -17,14 +17,14 @@ interface Payment {
 const initialPayments: Payment[] = [
   {
     id: 1,
-    teacherName: "Alynia Allan",
+    teacherName: "Tina Prakash",
     amount: 5000,
     dueDate: "2025-07-01",
     status: "Pending",
   },
   {
     id: 2,
-    teacherName: "James Carter",
+    teacherName: "John Martin",
     amount: 7000,
     dueDate: "2025-06-30",
     paidDate: "2025-06-30",
@@ -32,7 +32,7 @@ const initialPayments: Payment[] = [
   },
   {
     id: 3,
-    teacherName: "Priya Kapoor",
+    teacherName: "Priya Singh",
     amount: 6200,
     dueDate: "2025-07-05",
     status: "Pending",
@@ -55,13 +55,13 @@ export default function PaymentsPage() {
 
   return (
     <motion.div
-      className="p-6 max-w-4xl mx-auto"
+      className="p-6 max-w-4xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
     >
       <motion.h1
-        className="text-2xl font-bold mb-6"
+        className="text-2xl font-bold mb-6 text-blue-800 dark:text-blue-400"
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -79,19 +79,21 @@ export default function PaymentsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 border rounded-lg shadow gap-2"
+              className="flex flex-col md:flex-row md:items-center justify-between bg-white dark:bg-gray-800 p-4 border dark:border-gray-700 rounded-lg shadow gap-2"
             >
               {/* Left Section */}
               <div>
-                <p className="font-semibold text-lg">{payment.teacherName}</p>
-                <p className="text-sm text-gray-700">
+                <p className="font-semibold text-lg text-gray-900 dark:text-white">
+                  {payment.teacherName}
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   💰 Amount: ₹{payment.amount}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   📅 Due Date: {payment.dueDate}
                 </p>
                 {payment.paidDate && (
-                  <p className="text-sm text-green-700">
+                  <p className="text-sm text-green-700 dark:text-green-300">
                     ✅ Paid Date: {payment.paidDate}
                   </p>
                 )}
@@ -102,8 +104,8 @@ export default function PaymentsPage() {
                 <motion.span
                   className={`text-sm font-medium px-3 py-1 rounded-full ${
                     payment.status === "Paid"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-yellow-100 text-yellow-700"
+                      ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
+                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200"
                   }`}
                   layout
                 >
@@ -115,7 +117,7 @@ export default function PaymentsPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => markAsPaid(payment.id)}
-                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
                   >
                     Mark as Paid
                   </motion.button>

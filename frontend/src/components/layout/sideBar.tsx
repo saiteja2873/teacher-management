@@ -18,7 +18,6 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 
-// Sidebar navigation items
 const navItems = [
   { name: "Dashboard", href: "/", icon: <FiHome /> },
   { name: "All Teachers", href: "/teachers", icon: <FiUsers /> },
@@ -40,20 +39,20 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Top Bar */}
-      <div className="md:hidden flex items-center justify-between px-4 py-3 border-b bg-white shadow-sm">
+      <div className="md:hidden flex items-center justify-between px-4 py-3 border-b bg-background text-foreground shadow-sm">
         <motion.button
           whileTap={{ scale: 0.8 }}
           onClick={toggleMenu}
-          className="text-gray-800 absolute top-12 cursor-pointer"
+          className="text-foreground absolute top-12 cursor-pointer"
         >
           <FiMenu size={24} />
         </motion.button>
-        <div className="w-6" /> {/* Spacer for symmetry */}
+        <div className="w-6" />
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex md:flex-col w-64 h-screen bg-white border-r shadow-md">
-        <div className="p-4 text-xl font-bold text-blue-600 border-b">
+      <aside className="hidden md:flex md:flex-col w-64 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border shadow-md transition-colors">
+        <div className="p-4 text-xl font-bold text-sidebar-primary border-b border-sidebar-border">
           Admin Panel
         </div>
         <nav className="p-4 space-y-2">
@@ -68,8 +67,8 @@ export default function Sidebar() {
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 ${
                   pathname === item.href
-                    ? "bg-blue-100 text-blue-700 font-semibold"
-                    : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+                    : "hover:bg-muted hover:text-foreground"
                 }`}
               >
                 {item.icon}
@@ -84,7 +83,6 @@ export default function Sidebar() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
@@ -93,22 +91,21 @@ export default function Sidebar() {
               onClick={toggleMenu}
             />
 
-            {/* Sidebar Panel */}
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.3 }}
-              className="fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg"
+              className="fixed top-0 left-0 w-64 h-full bg-sidebar text-sidebar-foreground z-50 shadow-lg transition-colors"
             >
-              <div className="flex items-center justify-between p-4 border-b">
-                <span className="text-blue-600 font-bold text-xl">
+              <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
+                <span className="text-sidebar-primary font-bold text-xl">
                   Admin Panel
                 </span>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleMenu}
-                  className="text-gray-800 cursor-pointer"
+                  className="text-foreground cursor-pointer"
                 >
                   <FiX size={24} />
                 </motion.button>
@@ -127,8 +124,8 @@ export default function Sidebar() {
                       onClick={toggleMenu}
                       className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 ${
                         pathname === item.href
-                          ? "bg-blue-100 text-blue-700 font-semibold"
-                          : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                          ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+                          : "hover:bg-muted hover:text-foreground"
                       }`}
                     >
                       {item.icon}

@@ -62,17 +62,17 @@ export default function UpiPage() {
 
   return (
     <motion.div
-      className="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-6 space-y-6 mt-10"
+      className="max-w-md mx-auto bg-white dark:bg-zinc-900 dark:text-white shadow-xl rounded-2xl p-6 space-y-6 mt-10"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <ToastContainer />
+      <ToastContainer theme="dark" />
 
       {/* 🔙 Back Button */}
       <motion.button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-blue-600 font-medium cursor-pointer"
+        className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium cursor-pointer"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function UpiPage() {
       </motion.button>
 
       <motion.h2
-        className="text-xl font-semibold text-gray-800"
+        className="text-xl font-semibold text-gray-800 dark:text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -94,11 +94,9 @@ export default function UpiPage() {
 
       <motion.button
         onClick={() => setShowScanner((prev) => !prev)}
-        className="inline-flex items-center gap-2 text-blue-600 hover:underline focus:outline-none"
+        className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline focus:outline-none"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        initial="hidden"
-        animate="visible"
       >
         <FiCamera />
         {showScanner ? "Close Scanner" : "Scan QR Code"}
@@ -110,7 +108,7 @@ export default function UpiPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="border rounded-xl overflow-hidden"
+            className="border dark:border-gray-700 rounded-xl overflow-hidden"
           >
             <div className="block sm:hidden w-full">
               <Scanner
@@ -131,7 +129,7 @@ export default function UpiPage() {
                 scanDelay={500}
               />
             </div>
-            <div className="hidden sm:flex items-center justify-center p-4 text-sm text-red-500">
+            <div className="hidden sm:flex items-center justify-center p-4 text-sm text-red-500 dark:text-red-400">
               QR scanning is only available on mobile devices.
             </div>
           </motion.div>
@@ -139,18 +137,18 @@ export default function UpiPage() {
       </AnimatePresence>
 
       <motion.div variants={fadeInUp} custom={1} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600">Recipient UPI ID</label>
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Recipient UPI ID</label>
         <input
           type="text"
           value={upiId}
           onChange={(e) => setUpiId(e.target.value)}
           placeholder="example@upi"
-          className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          className="w-full mt-1 border dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
       </motion.div>
 
       <motion.div variants={fadeInUp} custom={2} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600">Amount</label>
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Amount</label>
         <input
           type="number"
           value={amount}
@@ -159,18 +157,18 @@ export default function UpiPage() {
             if (["e", "E", "+", "-"].includes(e.key)) e.preventDefault();
           }}
           placeholder="₹0.00"
-          className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          className="w-full mt-1 border dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
       </motion.div>
 
       <motion.div variants={fadeInUp} custom={3} initial="hidden" animate="visible">
-        <label className="text-sm font-medium text-gray-600">Remark (optional)</label>
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">Remark (optional)</label>
         <input
           type="text"
           value={remark}
           onChange={(e) => setRemark(e.target.value)}
           placeholder="Enter message"
-          className="w-full mt-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          className="w-full mt-1 border dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
       </motion.div>
 
@@ -178,7 +176,7 @@ export default function UpiPage() {
         whileTap={{ scale: 0.95 }}
         onClick={handlePayment}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-xl transition-all"
+        className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 rounded-xl transition-all"
         variants={fadeInUp}
         custom={4}
         initial="hidden"

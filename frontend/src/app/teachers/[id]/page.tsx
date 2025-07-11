@@ -5,16 +5,16 @@ import { useParams } from "next/navigation";
 import { FiEdit2, FiPlus, FiCheck, FiX } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 
 const mockTeachers = [
   {
     id: "1",
-    name: "Alynia Allan",
-    email: "alyniaallan@example.com",
-    phone: "+1 416-649-9057",
-    address: "36 Odorado Di Santo Dr, North York, Ontario, Canada",
+    name: "Nandhini Warrior",
+    email: "nandhini20@example.com",
+    phone: "+91 916-649-9057",
+    address: "Kukatpally, Hyderabad",
     role: "Teacher",
     privateQualifications: [
       { name: "Vocal Contemporary", rate: 30 },
@@ -138,7 +138,7 @@ export default function TeacherDetailPage() {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="text-2xl font-bold text-gray-800">
+      <div className="text-2xl font-bold text-gray-800 dark:text-gray-400">
         <motion.button
           onClick={() => router.back()}
           className="flex items-center text-blue-600 mb-2 cursor-pointer"
@@ -153,9 +153,11 @@ export default function TeacherDetailPage() {
       {/* Info Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Details */}
-        <div className="bg-white p-4 rounded shadow border">
+        <div className="bg-white p-4 rounded shadow border dark:bg-gray-800">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-semibold text-gray-700">Details</h2>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-400">
+              Details
+            </h2>
             {!isEditingDetails && (
               <FiEdit2
                 className="text-gray-500 hover:text-blue-600 cursor-pointer"
@@ -217,9 +219,11 @@ export default function TeacherDetailPage() {
         </div>
 
         {/* Phone */}
-        <div className="bg-white p-4 rounded shadow border">
+        <div className="bg-white p-4 rounded shadow border dark:bg-gray-800">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-semibold text-gray-700">Phone</h2>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-400">
+              Phone
+            </h2>
             {!isEditingPhone && (
               <FiEdit2
                 className="text-gray-500 hover:text-blue-600 cursor-pointer"
@@ -258,9 +262,11 @@ export default function TeacherDetailPage() {
         </div>
 
         {/* Address */}
-        <div className="bg-white p-4 rounded shadow border">
+        <div className="bg-white p-4 rounded shadow border dark:bg-gray-800">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-semibold text-gray-700">Address</h2>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-400">
+              Address
+            </h2>
             {!isEditingAddress && (
               <FiEdit2
                 className="text-gray-500 hover:text-blue-600 cursor-pointer"
@@ -302,9 +308,9 @@ export default function TeacherDetailPage() {
       {/* Qualifications Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Private Qualifications */}
-        <div className="bg-white p-4 rounded shadow border">
+        <div className="bg-white p-4 rounded shadow border dark:bg-gray-800">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-semibold text-gray-700">
+            <h2 className="font-semibold text-gray-700 dark:text-gray-400">
               Private Qualifications
             </h2>
             <div className="flex gap-2">
@@ -415,9 +421,9 @@ export default function TeacherDetailPage() {
         </div>
 
         {/* Group Qualifications */}
-        <div className="bg-white p-4 rounded shadow border">
+        <div className="bg-white p-4 rounded shadow border dark:bg-gray-800">
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-semibold text-gray-700">
+            <h2 className="font-semibold text-gray-700 dark:text-gray-400">
               Group Qualifications
             </h2>
             <div className="flex gap-2">
@@ -517,6 +523,31 @@ export default function TeacherDetailPage() {
           </table>
         </div>
       </div>
+      {/* Remove Button */}
+      <motion.div
+        className="text-center mt-10"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <button
+          onClick={() => {
+            const confirmDelete = window.confirm(
+              `Are you sure you want to remove ${teacher.name}?`
+            );
+            if (confirmDelete) {
+              const index = mockTeachers.findIndex((t) => t.id === teacher.id);
+              if (index !== -1) {
+                mockTeachers.splice(index, 1);
+              }
+              router.push("/teachers"); // 🔁 Replace with your actual teacher list route
+            }
+          }}
+          className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl transition-all"
+        >
+          Remove Teacher
+        </button>
+      </motion.div>
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function TeacherDetail() {
         className="text-2xl font-bold text-gray-800"
         variants={fadeIn}
       >
-        Teachers / Alynia Allan
+        Teachers / Nandhini Warrior
       </motion.div>
 
       {/* Top Info Cards */}
@@ -53,7 +53,7 @@ export default function TeacherDetail() {
             content: (
               <>
                 <p>
-                  <strong>Name:</strong> Alynia Allan
+                  <strong>Name:</strong> Nandhini Warrior
                 </p>
                 <p>
                   <strong>Role:</strong> Teacher
@@ -67,12 +67,12 @@ export default function TeacherDetail() {
           },
           {
             title: "Email",
-            content: <p>alyniaallan@example.com</p>,
+            content: <p>nadhini20@example.com</p>,
             onEdit: () => router.push("/teachers/1/edit/email"),
           },
           {
             title: "Phone",
-            content: <p>+1 416-649-9057</p>,
+            content: <p>+91 850-649-9057</p>,
             onEdit: () => router.push("/teachers/1/edit/phone"),
           },
         ].map((section, idx) => (
@@ -105,7 +105,7 @@ export default function TeacherDetail() {
             onClick={() => router.push("/teachers/1/edit/address")}
           />
         </div>
-        <p>36 Odorado Di Santo Dr, North York, Ontario, Canada</p>
+        <p>Kukatpally, Hyderabad</p>
       </motion.div>
 
       {/* Qualifications */}

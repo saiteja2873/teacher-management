@@ -30,40 +30,44 @@ export default function ReceivePage() {
 
   return (
     <motion.div
-      className="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-6 space-y-6 mt-10 transition-all"
+      className="max-w-md mx-auto bg-white dark:bg-zinc-900 dark:text-white shadow-xl rounded-2xl p-6 space-y-6 mt-10 transition-all"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <ToastContainer />
+      <ToastContainer theme="dark" />
 
       {/* 🔙 Back Button */}
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-2 text-blue-600 font-medium cursor-pointer"
+        className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium cursor-pointer"
       >
         <FiArrowLeft />
         Back
       </button>
 
-      <h2 className="text-xl font-semibold text-gray-800">
+      <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
         Receive Money via UPI
       </h2>
 
       {/* UPI ID */}
       <div>
-        <label className="text-sm font-medium text-gray-600">Your UPI ID</label>
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+          Your UPI ID
+        </label>
         <input
           type="text"
           value={upiId}
           onChange={(e) => setUpiId(e.target.value)}
           placeholder="yourupi@bank"
-          className="w-full mt-1 border rounded-xl px-4 py-2"
+          className="w-full mt-1 border border-gray-300 dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2"
         />
       </div>
 
       {/* Amount */}
       <div>
-        <label className="text-sm font-medium text-gray-600">Amount</label>
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+          Amount
+        </label>
         <input
           type="number"
           value={amount}
@@ -72,13 +76,13 @@ export default function ReceivePage() {
             if (["e", "E", "+", "-"].includes(e.key)) e.preventDefault();
           }}
           placeholder="₹0.00"
-          className="w-full mt-1 border rounded-xl px-4 py-2"
+          className="w-full mt-1 border border-gray-300 dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2"
         />
       </div>
 
       {/* Remark */}
       <div>
-        <label className="text-sm font-medium text-gray-600">
+        <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
           Remark (optional)
         </label>
         <input
@@ -86,7 +90,7 @@ export default function ReceivePage() {
           value={remark}
           onChange={(e) => setRemark(e.target.value)}
           placeholder="Enter purpose"
-          className="w-full mt-1 border rounded-xl px-4 py-2"
+          className="w-full mt-1 border border-gray-300 dark:border-gray-700 dark:bg-zinc-800 dark:text-white rounded-xl px-4 py-2"
         />
       </div>
 
@@ -94,7 +98,7 @@ export default function ReceivePage() {
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={handleGenerate}
-        className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-xl"
+        className="w-full bg-green-600 hover:bg-green-700 dark:hover:bg-green-800 text-white font-medium py-2 rounded-xl transition"
       >
         Generate QR
       </motion.button>
@@ -103,7 +107,6 @@ export default function ReceivePage() {
       {generated && (
         <div className="flex flex-col items-center gap-2 mt-4">
           <QRCode value={upiURL} size={180} />
-          <p className="text-sm text-gray-600 break-all text-center">{upiURL}</p>
         </div>
       )}
     </motion.div>

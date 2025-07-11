@@ -37,7 +37,7 @@ const weekdays = [
 const teachers: Teacher[] = [
   {
     id: 1,
-    name: "Alynia Allan",
+    name: "Tina Prakash",
     classes: [
       {
         day: "Monday",
@@ -61,7 +61,7 @@ const teachers: Teacher[] = [
   },
   {
     id: 2,
-    name: "Priya Kapoor",
+    name: "Priya Singh",
     classes: [
       {
         day: "Monday",
@@ -88,12 +88,14 @@ export default function SchedulePage() {
 
   return (
     <motion.div
-      className="p-6 max-w-6xl mx-auto"
+      className="p-6 max-w-6xl mx-auto text-gray-800 dark:text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="text-2xl font-bold mb-6">Teacher Timetable</h1>
+      <h1 className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">
+        Teacher Timetable
+      </h1>
 
       <AnimatePresence mode="wait">
         {!selectedTeacher ? (
@@ -109,12 +111,16 @@ export default function SchedulePage() {
               <motion.button
                 key={teacher.id}
                 onClick={() => setSelectedTeacher(teacher)}
-                className="border bg-white shadow p-4 rounded hover:bg-blue-50 transition text-left w-full"
+                className="border bg-white dark:bg-gray-800 dark:border-gray-600 text-left w-full p-4 rounded shadow hover:bg-blue-50 dark:hover:bg-gray-700 transition"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <p className="font-semibold text-lg">{teacher.name}</p>
-                <p className="text-sm text-gray-600">View Weekly Timetable</p>
+                <p className="font-semibold text-lg text-gray-900 dark:text-white">
+                  {teacher.name}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  View Weekly Timetable
+                </p>
               </motion.button>
             ))}
           </motion.div>
@@ -129,24 +135,29 @@ export default function SchedulePage() {
           >
             <motion.button
               onClick={() => setSelectedTeacher(null)}
-              className="text-blue-600 flex items-center gap-1 cursor-pointer mb-10"
+              className="text-blue-600 dark:text-blue-400 flex items-center gap-1 cursor-pointer mb-10"
               whileHover={{ scale: 1.05 }}
             >
               <FiArrowLeft className="text-base" />
               Back to Teacher List
             </motion.button>
 
-            <h2 className="text-xl font-semibold mb-4">
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
               Weekly Timetable for {selectedTeacher.name}
             </h2>
 
-            <div className="overflow-x-auto border rounded">
-              <table className="min-w-full table-fixed border-collapse border border-gray-300 text-sm">
-                <thead className="bg-gray-100">
+            <div className="overflow-x-auto border dark:border-gray-700 rounded">
+              <table className="min-w-full table-fixed border-collapse border border-gray-300 dark:border-gray-700 text-sm">
+                <thead className="bg-gray-100 dark:bg-gray-800">
                   <tr>
-                    <th className="border px-4 py-2 w-32">Time</th>
+                    <th className="border px-4 py-2 w-32 dark:border-gray-700">
+                      Time
+                    </th>
                     {weekdays.map((day) => (
-                      <th key={day} className="border px-4 py-2 w-36">
+                      <th
+                        key={day}
+                        className="border px-4 py-2 w-36 dark:border-gray-700"
+                      >
                         {day}
                       </th>
                     ))}
@@ -155,7 +166,7 @@ export default function SchedulePage() {
                 <tbody>
                   {timeSlots.map((time) => (
                     <tr key={time}>
-                      <td className="border px-4 py-2 font-medium bg-gray-50">
+                      <td className="border px-4 py-2 font-medium bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
                         {time}
                       </td>
                       {weekdays.map((day) => {
@@ -163,19 +174,21 @@ export default function SchedulePage() {
                         return (
                           <td
                             key={day}
-                            className="border px-4 py-2 text-center"
+                            className="border px-4 py-2 text-center dark:border-gray-700"
                           >
                             {cls ? (
                               <>
-                                <div className="font-semibold">
+                                <div className="font-semibold text-gray-900 dark:text-white">
                                   {cls.subject}
                                 </div>
-                                <div className="text-gray-500 text-xs">
+                                <div className="text-gray-500 text-xs dark:text-gray-400">
                                   {cls.location}
                                 </div>
                               </>
                             ) : (
-                              <span className="text-gray-300">—</span>
+                              <span className="text-gray-300 dark:text-gray-600">
+                                —
+                              </span>
                             )}
                           </td>
                         );

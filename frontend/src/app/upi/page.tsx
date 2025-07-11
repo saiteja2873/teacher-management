@@ -26,13 +26,13 @@ const buttonVariants = {
 export default function UpiPage() {
   return (
     <motion.div
-      className="max-w-md mx-auto mt-10 bg-white p-6 rounded-xl shadow-md space-y-6 text-center"
+      className="max-w-md mx-auto mt-10 bg-white dark:bg-zinc-900 dark:text-white p-6 rounded-xl shadow-md space-y-6 text-center"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.h2
-        className="text-2xl font-semibold text-blue-700"
+        className="text-2xl font-semibold text-blue-700 dark:text-blue-400"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -41,7 +41,7 @@ export default function UpiPage() {
       </motion.h2>
 
       <motion.p
-        className="text-gray-600"
+        className="text-gray-600 dark:text-gray-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
@@ -57,7 +57,7 @@ export default function UpiPage() {
         >
           <Link
             href="/upi/send"
-            className="block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition"
+            className="block bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-800 text-white py-2 px-4 rounded-lg transition"
           >
             Send Money
           </Link>
@@ -70,7 +70,7 @@ export default function UpiPage() {
         >
           <Link
             href="/upi/receive"
-            className="block bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition"
+            className="block bg-green-600 hover:bg-green-700 dark:hover:bg-green-800 text-white py-2 px-4 rounded-lg transition"
           >
             Receive Money
           </Link>

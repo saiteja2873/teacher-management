@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { Input } from "../../../components/ui/input";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export default function AddTeacherPage() {
@@ -45,13 +44,13 @@ export default function AddTeacherPage() {
 
   return (
     <motion.div
-      className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow mt-10"
+      className="max-w-2xl mx-auto bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-100 p-6 rounded-lg shadow mt-10"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
       <motion.h2
-        className="text-2xl font-bold mb-6 text-blue-700"
+        className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
@@ -80,7 +79,9 @@ export default function AddTeacherPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + i * 0.1 }}
           >
-            <Label htmlFor={name}>{label}</Label>
+            <Label htmlFor={name} className="text-foreground">
+              {label}
+            </Label>
             <Input
               id={name}
               type={type}
@@ -88,6 +89,7 @@ export default function AddTeacherPage() {
               value={(formData as any)[name]}
               onChange={handleChange}
               required
+              className="bg-background text-foreground border border-gray-300 dark:border-gray-700"
             />
           </motion.div>
         ))}
@@ -98,7 +100,9 @@ export default function AddTeacherPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <Label htmlFor="address">Address</Label>
+          <Label htmlFor="address" className="text-foreground">
+            Address
+          </Label>
           <Textarea
             id="address"
             name="address"
@@ -106,6 +110,7 @@ export default function AddTeacherPage() {
             onChange={handleChange}
             rows={3}
             required
+            className="bg-background text-foreground border border-gray-300 dark:border-gray-700"
           />
         </motion.div>
 
@@ -115,7 +120,9 @@ export default function AddTeacherPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
         >
-          <Label htmlFor="availability">Availability</Label>
+          <Label htmlFor="availability" className="text-foreground">
+            Availability
+          </Label>
           <Textarea
             id="availability"
             name="availability"
@@ -123,6 +130,7 @@ export default function AddTeacherPage() {
             onChange={handleChange}
             rows={3}
             required
+            className="bg-background text-foreground border border-gray-300 dark:border-gray-700"
           />
         </motion.div>
 
@@ -130,7 +138,7 @@ export default function AddTeacherPage() {
           type="submit"
           disabled={loading}
           whileTap={{ scale: 0.95 }}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition"
+          className="w-full bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-4 rounded transition"
         >
           {loading ? "Submitting..." : "Add Teacher"}
         </motion.button>
