@@ -10,21 +10,21 @@ export default function LogoutPage() {
   const router = useRouter();
   const [confirmed, setConfirmed] = useState(false);
 
-  const handleConfirmLogout = () => {
-    // Clear tokens or session here
-    localStorage.clear(); // or cookies, auth tokens etc.
-    toast.success("Logged out successfully!");
+//   const handleConfirmLogout = () => {
+//     // Clear tokens or session here
+//     localStorage.clear(); // or cookies, auth tokens etc.
+//     toast.success("Logged out successfully!");
 
-    setTimeout(() => {
-      router.push("/login"); // Redirect to login or landing page
-    }, 1500);
-  };
+//     setTimeout(() => {
+//       router.push("/login"); // Redirect to login or landing page
+//     }, 1500);
+//   };
 
-  useEffect(() => {
-    if (confirmed) {
-      handleConfirmLogout();
-    }
-  }, [confirmed]);
+//   useEffect(() => {
+//     if (confirmed) {
+//       handleConfirmLogout();
+//     }
+//   }, [confirmed]);
 
   return (
     <motion.div
