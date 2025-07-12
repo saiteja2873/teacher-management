@@ -105,7 +105,12 @@ Thanks for exploring the **Teacher Management System**!
 Feel free to fork, star ⭐, or share your suggestions.
 ```
 
-🚀 Live Demo
+## 🚀 Live Demo
 
 
 Check out the live app here: [Teacher Management System](https://teacher-management-one.vercel.app/)
+
+
+## 📽️ Project Walkthrough Video
+
+Watch the walkthrough on Loom: [Click here to watch](https://www.loom.com/share/2e74a62cfde446da9faefe0d41f828a2?sid=cdceaa76-49fb-4e66-8e29-5c5ca641d8d3)
