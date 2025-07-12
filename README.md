@@ -98,8 +98,14 @@ npm run dev
 ---
 
 ## 📘 Final Notes
-
+```
 This project was built to simplify teacher management workflows through an intuitive UI and modern tech stack.
 
 Thanks for exploring the **Teacher Management System**!  
 Feel free to fork, star ⭐, or share your suggestions.
+```
+
+🚀 Live Demo
+
+
+Check out the live app here: [Teacher Management System](https://teacher-management-one.vercel.app/)
